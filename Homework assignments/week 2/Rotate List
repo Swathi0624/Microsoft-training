@@ -1,0 +1,48 @@
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+      ListNode current=head;
+      ListNode prev=null;
+      ListNode rotatedhead=null;
+        
+      //findinf length of ll
+        int n=0;
+        ListNode temp=head;
+        while(temp!=null){
+            n++;
+            temp=temp.next;   
+        }
+        if(n==0){
+            return null;
+        }else{
+            k=k%n;
+        }
+        
+        
+        while(k>0){
+            
+            if(head==null || head.next==null){
+                return head;
+            }
+            
+            
+           while(current.next!=null){
+               prev=current;
+               current=current.next;
+               
+           }
+            rotatedhead=current;
+            current.next=head;
+            head=current;
+            prev.next=null;
+       
+            //update pointers
+            current=rotatedhead;
+            prev=null;
+           
+           k--;
+       }
+        
+        return head;
+    }
+}
+
